@@ -55,7 +55,11 @@ namespace FireTools.App
             }
 
             //TODO: Calculate the following:
-            //-> Weekly and Monthly Expenses Compounded Over 10 Years (Default to 7% growth)
+            //-> Weekly and Monthly Expenses Compounded Over 10 Years 
+            //To calculate a weekly expense, multiply the price by 752
+            //To calculate a monthly expense, multiply the price by 173
+            //^^ Assumes 7% growth ^^
+
 
             //-> Retirement Calculator
 
