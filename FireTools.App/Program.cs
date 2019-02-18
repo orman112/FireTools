@@ -55,6 +55,8 @@ namespace FireTools.App
             }
 
             //TODO: Calculate the following:
+            //-> Weekly and Monthly Expenses Compounded Over 10 Years (Default to 7% growth)
+
             //-> Retirement Calculator
 
             //-> Compound Interest Calculator
