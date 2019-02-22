@@ -6,7 +6,8 @@ namespace FireTools.Utilities
 {
     public class ExpensesService : BaseCalculator
     {
-        private readonly decimal _expenseAmount;       
+        private readonly decimal _expenseAmount;
+        private decimal _calculationFrequency;
 
         public ExpensesService(decimal expenseAmount)
         {
@@ -15,17 +16,19 @@ namespace FireTools.Utilities
 
         public decimal CalculateWeeklyExpenses()
         {
-            return (_expenseAmount * 752);
+            _calculationFrequency = 752;
+            return Calculate();
         }
 
         public decimal CalculateMonthlyExpenses()
         {
-            return (_expenseAmount * 173);
+            _calculationFrequency = 173;
+            return Calculate();
         }
 
         public override decimal Calculate()
         {
-            throw new NotImplementedException();
+            return (_expenseAmount * _calculationFrequency);
         }
     }
 }
