@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FireTools.Utilities
 {
-    public class ExpensesService
+    public class ExpensesService : BaseCalculator
     {
-        private readonly decimal _expenseAmount;
+        private readonly decimal _expenseAmount;       
 
         public ExpensesService(decimal expenseAmount)
         {
@@ -15,12 +15,17 @@ namespace FireTools.Utilities
 
         public decimal CalculateWeeklyExpenses()
         {
-            return 0.00m;
+            return (_expenseAmount * 752);
         }
 
         public decimal CalculateMonthlyExpenses()
         {
-            return 0.00m;
+            return (_expenseAmount * 173);
+        }
+
+        public override decimal Calculate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

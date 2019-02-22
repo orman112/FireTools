@@ -115,13 +115,17 @@ namespace FireTools.App
             Console.WriteLine("Is the following expense a monthly (M), or weekly (W) expense?");
             var expenseType = Console.ReadLine().ToUpper();
 
-            if (expenseType != "M" || expenseType != "W") return;
+            if (expenseType != "W" && expenseType != "M") return;
 
             Console.WriteLine("Please enter the recurring expense amount");
             var expenseAmount = decimal.Parse(Console.ReadLine());
 
             var expensesService = new ExpensesService(expenseAmount);
-            var expenses = expenseType == "M" ? CalculateMonthlyExpenses() : CalculateWeeklyExpenses();
+            var amountSaved = expenseType == "M" ? 
+                expensesService.CalculateMonthlyExpenses() : 
+                expensesService.CalculateWeeklyExpenses();
+
+            Console.WriteLine($"If you invested your ${expenseAmount} instead, you would save ${amountSaved} after 10 years!");
         }
     }
 
