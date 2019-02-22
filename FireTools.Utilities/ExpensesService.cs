@@ -11,6 +11,9 @@ namespace FireTools.Utilities
 
         public ExpensesService(decimal expenseAmount)
         {
+            //Weekly and Monthly Expenses Compounded Over 10 Years
+            //Assumes 7% growth
+
             _expenseAmount = expenseAmount;
         }
 
