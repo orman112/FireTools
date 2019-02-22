@@ -38,6 +38,9 @@ namespace FireTools.App
                 case Action.SavingsRate:
                     CalculateSavingsRate();
                     break;
+                case Action.Expenses:
+                    CalculateExpensesOver10Years();
+                    break;
                 case Action.Retirement:
                     break;
                 case Action.CompoundInterest:
@@ -98,17 +101,34 @@ namespace FireTools.App
             Console.WriteLine("How much do you contribute to retirement (after tax) per paycheck?");
             var postTaxContributions = decimal.Parse(Console.ReadLine());
 
-            var savingsRateService = new SavingsRateService();
-            var savingsRate = (savingsRateService.Calculate(preTaxContributions, 
-                                  takeHomePay, postTaxContributions)) * 100;
+            var savingsRateService = new SavingsRateService(preTaxContributions, takeHomePay, postTaxContributions);
+            var savingsRate = savingsRateService.Calculate() * 100;
 
             Console.WriteLine($"Your current savings rate is {decimal.Round(savingsRate, 2)}%");
+        }
+
+        private static void CalculateExpensesOver10Years()
+        {
+            Console.WriteLine("*** Calculating Expesnses ***");
+            Console.WriteLine("*** The following calculation assumes a 7% growth over 10 years. ***");
+
+            Console.WriteLine("Is the following expense a monthly (M), or weekly (W) expense?");
+            var expenseType = Console.ReadLine().ToUpper();
+
+            if (expenseType != "M" || expenseType != "W") return;
+
+            Console.WriteLine("Please enter the recurring expense amount");
+            var expenseAmount = decimal.Parse(Console.ReadLine());
+
+            var expensesService = new ExpensesService(expenseAmount);
+            var expenses = expenseType == "M" ? CalculateMonthlyExpenses() : CalculateWeeklyExpenses();
         }
     }
 
     internal enum Action
     {
         SavingsRate = 1,
+        Expenses,
         Retirement,
         CompoundInterest,
         AmountNeededToRetire,
